@@ -10,6 +10,7 @@ import RatingSelect from "./components/RatingSelect";
 import AboutPage from "../src/components/pages/AboutPage";
 import AboutIconLink from "./components/AboutIconLink";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Post from "./components/Post";
 // import FeedbackItem from "./components/FeedbackItem";
 
 function App() {
@@ -46,15 +47,13 @@ function App() {
                 />
               </>
             }
-          >
-          </Route>
-
+          ></Route>
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/post/:id/:name" element={<Post />} />
         </Routes>
-            <AboutIconLink />
+        <AboutIconLink />
       </div>
     </Router>
   );
 }
 export default App;
-
