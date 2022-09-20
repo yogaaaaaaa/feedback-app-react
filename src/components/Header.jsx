@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+// import {FaToggleOff} from 'react-icons/fa'
 
 function Header({ text, bgColor, textColor }) {
   //
@@ -20,6 +21,8 @@ function Header({ text, bgColor, textColor }) {
           <h2>{text}</h2>
         </Link>
       </div>
+          {/* <FaToggleOff></FaToggleOff> */}
+
     </header>
   );
 }
