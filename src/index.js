@@ -7,8 +7,8 @@ import './index.css'
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  // </React.StrictMode>,
 //   document.getElementById("root")
 );

@@ -1,33 +1,35 @@
-import { createContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
   //STATE FOR FEEDBACK====================================
-  const [feedback, setFeedback] = useState([
-    {
-      id: 1,
-      text: "This is from Feedback Context",
-      rating: 8,
-    },
-    {
-      id: 2,
-      text: "This is from Feedback Context 2 Mollit veniam labore proident duis consequat fugiat consectetur consequat occaecat eu ex excepteur nisi.",
-      rating: 10,
-    },
-    {
-      id: 3,
-      text: "This is from Feedback Context Labore nisi occaecat ipsum commodo id elit nisi magna nulla dolore.Enim sunt deserunt do laboris do in.Ut commodo dolor sit ea quis ut aute.",
-      rating: 5.5,
-    },
-  ]);
+  const [feedback, setFeedback] = useState([]);
 
   //STATE FOR EDIT ======================================
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
   });
+
+  //state for loading =====================
+  const [isLoading, setIsLoading] = useState(true);
+
+  //use effect for fetching data
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+
+  //fetching data =============================
+  const fetchFeedback = async () => {
+    const response = await fetch(`/feedback?_sort=id&_order=desc`);
+
+    const data = await response.json();
+    setFeedback(data);
+
+    //set isloading to false =======================
+    setIsLoading(false);
+  };
 
   //delete feedback
   const deleteFeedback = (id) => {
@@ -37,9 +39,19 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   //add feedback
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-    setFeedback([newFeedback, ...feedback]);
+  const addFeedback = async (newFeedback) => {
+    const response = await fetch("/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFeedback),
+    });
+
+    const data = await response.json();
+
+    // newFeedback.id = uuidv4();
+    setFeedback([data, ...feedback]);
     // console.log(newFeedback);
     // console.log(newFeedback.id);
   };
@@ -59,7 +71,7 @@ export const FeedbackProvider = ({ children }) => {
     //set mode to give rating, so it's not stuck on edit mode
     setFeedbackEdit({
       edit: false,
-      item:{}
+      item: {},
     });
   };
 
@@ -68,6 +80,7 @@ export const FeedbackProvider = ({ children }) => {
       value={{
         feedback,
         feedbackEdit,
+        isLoading,
         deleteFeedback,
         addFeedback,
         editFeedbackFunc,

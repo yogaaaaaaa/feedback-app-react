@@ -1,0 +1,39 @@
+{
+  "feedback": [
+    {
+      "id": 2,
+      "text": "Feedback number 2",
+      "rating": 8
+    },
+    {
+      "id": 3,
+      "text": "Feedback number 3",
+      "rating": 4
+    },
+    {
+      "id": "4",
+      "text": "lorem ipsum",
+      "rating": 7
+    },
+    {
+      "id": "5",
+      "text": "lorem ipsum dolor",
+      "rating": 8
+    },
+    {
+      "text": "bs adasnda sdbasmbd",
+      "rating": 10,
+      "id": "Mam3iKx"
+    },
+    {
+      "text": "bdasjdkbasjd askd jkas kd ",
+      "rating": 7,
+      "id": "hKfaLyg"
+    },
+    {
+      "text": "qwnmenqwm,e mqwne",
+      "rating": 10,
+      "id": "PYtuxe4"
+    }
+  ]
+}
