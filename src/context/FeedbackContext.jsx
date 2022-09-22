@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
+  //STATE FOR FEEDBACK====================================
   const [feedback, setFeedback] = useState([
     {
       id: 1,
@@ -22,6 +23,7 @@ export const FeedbackProvider = ({ children }) => {
     },
   ]);
 
+  //STATE FOR EDIT ======================================
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
@@ -43,17 +45,33 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   //edit feedback
-  const editFeedback = (item) => {
+  const editFeedbackFunc = (item) => {
     setFeedbackEdit({ item, edit: true });
+  };
+
+  const updateFeedback = (id, updatedItem) => {
+    setFeedback(
+      feedback.map((items) =>
+        items.id === id ? { ...items, ...updatedItem } : items
+      )
+    );
+
+    //set mode to give rating, so it's not stuck on edit mode
+    setFeedbackEdit({
+      edit: false,
+      item:{}
+    });
   };
 
   return (
     <FeedbackContext.Provider
       value={{
         feedback,
+        feedbackEdit,
         deleteFeedback,
         addFeedback,
-        editFeedback
+        editFeedbackFunc,
+        updateFeedback,
       }}
     >
       {children}

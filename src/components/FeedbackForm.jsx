@@ -3,18 +3,26 @@ import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 import FeedbackContext from "../context/FeedbackContext";
-import {useContext, useState} from 'react'
+import { useContext, useState, useEffect } from "react";
 
 function FeedbackForm() {
-
-  const {addFeedback} = useContext(FeedbackContext);
-
+  const { addFeedback, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext);
 
   //States ================================================
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState();
   const [rating, setRating] = useState(10);
+
+  //USE EFFECT TO FILL THE FORM FOR UPDATE THING =====================================
+  useEffect(() => {
+    if (feedbackEdit.edit === true) {
+      setBtnDisabled(false);
+      setText(feedbackEdit.item.text);
+      // setRating(feedbackEdit.item.rating);
+    }
+  }, [feedbackEdit]);
 
   //================================================
   const handleTextChange = (e) => {
@@ -32,7 +40,7 @@ function FeedbackForm() {
     setText(e.target.value);
   };
 
-//================================================
+  //================================================
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim().length > 10) {
@@ -41,12 +49,16 @@ function FeedbackForm() {
         rating,
       };
       // handleAdd(newFeedback);
-      addFeedback(newFeedback);
-
+      if (feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedback);
+      } else {
+        addFeedback(newFeedback);
+      }
+      // setFeedbackEdit({ edit: false });
       setText("");
     }
   };
-//================================================
+  //================================================
 
   return (
     <Card>
@@ -65,7 +77,6 @@ function FeedbackForm() {
           <Button type="submit" isDisabled={btnDisabled}>
             Send
           </Button>
-
         </div>
         {message && <div className="message">{message}</div>}
       </form>

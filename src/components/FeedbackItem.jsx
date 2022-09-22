@@ -6,16 +6,16 @@ import FeedbackContext from '../context/FeedbackContext'
 
 function FeedbackItem({ item }) {
 
-  const {deleteFeedback, editFeedback} = useContext(FeedbackContext)
+  const {deleteFeedback, editFeedbackFunc} = useContext(FeedbackContext)
 
   return (
     <Card reverse={true}>
       <div className="num-display">{item.rating}</div>
         <button className='close' onClick={()=> deleteFeedback(item.id)}>
-          <FaTimes color='purple'/>
+          <FaTimes color='red'/>
         </button>
-        <button className='edit' onClick={()=> editFeedback(item.id)}>
-          <FaEdit color='purple'/>
+        <button className='edit' onClick={()=> editFeedbackFunc(item)}>
+          <FaEdit color='yellow'/>
         </button>
       <p style={{fontSize:'10px', backgroundColor:'purple', width:'170px', borderRadius:'10px', padding:'4px'  }}>ID: {item.id}</p>
       <div className="text-display">{item.text}</div>
