@@ -1,16 +1,6 @@
 {
   "feedback": [
     {
-      "id": 2,
-      "text": "Feedback number 2",
-      "rating": 8
-    },
-    {
-      "id": 3,
-      "text": "Feedback number 3",
-      "rating": 4
-    },
-    {
       "id": "4",
       "text": "lorem ipsum",
       "rating": 7
@@ -26,14 +16,14 @@
       "id": "Mam3iKx"
     },
     {
-      "text": "bdasjdkbasjd askd jkas kd ",
-      "rating": 7,
-      "id": "hKfaLyg"
+      "text": "test test 44",
+      "rating": 3,
+      "id": "PYtuxe4"
     },
     {
-      "text": "qwnmenqwm,e mqwne",
-      "rating": 10,
-      "id": "PYtuxe4"
+      "text": "test yyyyyyÿyyy ü",
+      "rating": 7,
+      "id": "o9RxXcB"
     }
   ]
 }

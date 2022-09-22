@@ -31,14 +31,17 @@ export const FeedbackProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  //delete feedback
-  const deleteFeedback = (id) => {
+  //delete feedback ============================
+  const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure to delete?")) {
+      await fetch(`/feedback/${id}`, {
+        method: "DELETE",
+      });
       setFeedback(feedback.filter((item) => item.id !== id));
-    }
+    } 
   };
 
-  //add feedback
+  //add feedback ==============================
   const addFeedback = async (newFeedback) => {
     const response = await fetch("/feedback", {
       method: "POST",
@@ -61,10 +64,21 @@ export const FeedbackProvider = ({ children }) => {
     setFeedbackEdit({ item, edit: true });
   };
 
-  const updateFeedback = (id, updatedItem) => {
+  const updateFeedback = async (id, updatedItem) => {
+    
+    const response = await fetch(`/feedback/${id}`,{
+      method: "PUT",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedItem)
+    })
+
+    const data = await response.json()
+    
     setFeedback(
       feedback.map((items) =>
-        items.id === id ? { ...items, ...updatedItem } : items
+        items.id === id ? { ...items, ...data } : items
       )
     );
 
