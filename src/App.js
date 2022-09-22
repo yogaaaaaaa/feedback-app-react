@@ -4,8 +4,8 @@ import FeedbackList from "./components/FeedbackList";
 // import FeedbackData from "./data/FeedbackData";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
-import Card from "./components/shared/Card";
-import RatingSelect from "./components/RatingSelect";
+
+
 import AboutPage from "../src/components/pages/AboutPage";
 import AboutIconLink from "./components/AboutIconLink";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

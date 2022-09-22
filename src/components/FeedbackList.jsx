@@ -1,7 +1,7 @@
 import FeedbackItem from "./FeedbackItem";
 // import PropTypes from "prop-types";
 import { useContext } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import FeedbackContext from "../context/FeedbackContext";
 import Spinner from "./shared/Spinner";
 
